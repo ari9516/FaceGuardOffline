@@ -1,81 +1,172 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-## Screenshot
+<div align="center">
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1a0d,50:1a3a1a,100:c8f135&height=160&section=header&text=FaceGuardOffline&fontSize=42&fontColor=c8f135&fontAlignY=38&desc=On-Device%20Face%20Recognition%20%E2%80%A2%20No%20Cloud.%20No%20Compromise.&descColor=e8e8e0&descAlignY=58&animation=fadeIn" width="100%"/>
 
-# Getting Started
+<br/>
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+![React Native](https://img.shields.io/badge/React%20Native-0.73-20232A?style=for-the-badge&logo=react&logoColor=c8f135)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-0d1a0d?style=for-the-badge&logo=typescript&logoColor=c8f135)
+![TensorFlow Lite](https://img.shields.io/badge/TFLite-On--Device%20ML-c8f135?style=for-the-badge&logo=tensorflow&logoColor=0d1a0d)
+![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-e8e8e0?style=for-the-badge&logo=android&logoColor=0d1a0d)
+![Hackathon](https://img.shields.io/badge/Built%20At-Hackathon%207.0-c8f135?style=for-the-badge)
 
-## Step 1: Start the Metro Server
+</div>
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+---
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## ✦ What is FaceGuardOffline?
+
+**FaceGuardOffline** is a privacy-first face recognition app built entirely for the edge. Face data never leaves the device — no API calls, no cloud uploads, no internet dependency. Recognition runs locally via a TensorFlow Lite model, face embeddings are stored in an encrypted SQLite database, and the app actively blocks itself when a network connection is detected.
+
+Built under 24 hours at **Hackathon 7.0**.
+
+---
+
+## ✦ Core Features
+
+| Feature | Details |
+|---|---|
+| **On-Device Inference** | TensorFlow Lite model runs entirely on the device's neural processing pipeline |
+| **Zero Network Dependency** | App enforces offline-only operation via `NetInfo` — no data is ever transmitted |
+| **AES-Encrypted Storage** | All face embeddings stored in SQLite with AES encryption at rest |
+| **Live Camera Feed** | Real-time face detection using `react-native-vision-camera` |
+| **Cross-Platform** | Runs on both Android and iOS from a single TypeScript codebase |
+| **Persistent Identity DB** | Register, recognize, and manage identities locally across sessions |
+
+---
+
+## ✦ Architecture
+
+```
+FaceGuardOffline/
+├── src/
+│   ├── screens/          # Navigation-routed views
+│   ├── components/       # Reusable UI elements
+│   ├── ml/               # TFLite model integration & inference
+│   ├── db/               # SQLite schema, queries, AES layer
+│   └── utils/            # NetInfo guard, helpers
+├── android/              # Android-specific native config
+├── ios/                  # iOS-specific native config
+├── App.tsx               # Root component + navigation setup
+└── package.json
+```
+
+---
+
+## ✦ Tech Stack
+
+```
+React Native 0.73        →  Cross-platform mobile runtime
+TypeScript 5.0           →  Static typing throughout
+react-native-tflite      →  On-device TensorFlow Lite inference
+react-native-vision-camera  →  High-performance camera access
+react-native-sqlite-storage →  Embedded local database
+react-native-aes-crypto  →  AES encryption for face embeddings
+@react-native-community/netinfo  →  Network detection & offline guard
+React Navigation 6       →  Native stack navigation
+```
+
+---
+
+## ✦ Getting Started
+
+### Prerequisites
+
+Make sure your React Native environment is set up:
+→ [React Native Environment Setup](https://reactnative.dev/docs/environment-setup)
+
+You'll need: Node ≥ 18, JDK 17+, Android Studio or Xcode.
+
+### Install
 
 ```bash
-# using npm
+git clone https://github.com/RishiRaj1495/FaceGuardOffline.git
+cd FaceGuardOffline
+npm install
+```
+
+**iOS only — install pods:**
+```bash
+cd ios && bundle exec pod install && cd ..
+```
+
+### Run
+
+```bash
+# Start Metro bundler
 npm start
 
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
+# Android
 npm run android
 
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
+# iOS
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+---
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## ✦ How It Works
 
-## Step 3: Modifying your App
+```
+Camera Frame
+    │
+    ▼
+Vision Camera (live preview)
+    │
+    ▼
+TFLite Model (face detection + embedding extraction)
+    │
+    ▼
+AES Encryption
+    │
+    ▼
+SQLite Database (local, encrypted, persistent)
+    │
+    ▼
+Match / Register Result ──► UI Feedback
+```
 
-Now that you have successfully run the app, let's modify it.
+On registration, a face embedding is extracted and stored encrypted. On recognition, the live embedding is compared against stored entries — entirely on-device, no round trips.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+---
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+## ✦ Privacy Model
 
-## Congratulations! :tada:
+- **No cloud, no API** — the app calls zero external endpoints
+- **NetInfo enforcement** — recognition is blocked while a network connection is active
+- **Encrypted at rest** — SQLite face data is AES-encrypted; plaintext embeddings are never persisted
+- **No telemetry, no analytics**
 
-You've successfully run and modified your React Native App. :partying_face:
+---
 
-### Now what?
+## ✦ Built At
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+<div align="center">
 
-# Troubleshooting
+> **Hackathon 7.0** — Built under 24 hours
+>
+> A project exploring what privacy-preserving biometrics looks like when the cloud is removed entirely from the equation.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+</div>
 
-# Learn More
+---
 
-To learn more about React Native, take a look at the following resources:
+## ✦ Team
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Built by students from **VIT Bhopal** — contributions welcome via pull request.
+
+---
+
+## ✦ License
+
+This project is open source. See [LICENSE](LICENSE) for details.
+
+---
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:c8f135,50:1a3a1a,100:0d1a0d&height=100&section=footer" width="100%"/>
+
+*No face left the device during the making of this app.*
+
+</div>
