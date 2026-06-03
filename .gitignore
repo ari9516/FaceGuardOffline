@@ -64,3 +64,7 @@ yarn-error.log
 
 # testing
 /coverage
+
+# Local build directory and layout dumps
+/b/
+/window_dump.xml
