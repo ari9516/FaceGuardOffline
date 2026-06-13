@@ -212,7 +212,7 @@ npm run ios
     <td align="center">
       <a href="https://github.com/ari9516">
         <img src="https://avatars.githubusercontent.com/u/191688404?v=4" width="80px" style="border-radius:50%; border: 2px solid #c8f135;" alt="Arnav Kumar"/><br/>
-        <sub><b>Arnav Kumar</b></sub>
+        <sub><b>Arnab Kumar</b></sub>
       </a>
     </td>
     <td align="center">
